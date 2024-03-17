@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"smtp-artha/src/configs"
 	"smtp-artha/src/helpers"
+	appRouter "smtp-artha/src/routers/app"
 
 	"github.com/gin-gonic/gin"
 )
@@ -27,6 +28,8 @@ func Index(router *gin.Engine) {
 
 		context.Next()
 	})
+
+	appRouter.AppRouters("/api", router)
 
 	router.NoRoute(func(context *gin.Context) {
 		baseUrl, _ := context.Get("baseUrl")

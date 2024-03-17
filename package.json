@@ -1,0 +1,12 @@
+{
+  "name": "smtp-artha",
+  "version": "0.1.0",
+  "main": "index.js",
+  "repository": "https://github.com/bhaktibuana/smtp-artha.git",
+  "author": "bhaktibuana <bhaktibuana19@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "go run ."
+  }
+}

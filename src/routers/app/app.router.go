@@ -1,7 +1,7 @@
 package appRouter
 
 import (
-	// authRouter "api-artha/src/routers/auth"
+	smtpRouter "smtp-artha/src/routers/smtp"
 
 	"github.com/gin-gonic/gin"
 )
@@ -9,6 +9,6 @@ import (
 func AppRouters(path string, router *gin.Engine) {
 	apiGroup := router.Group(path)
 	{
-		// authRouter.Routes("/exampe-route", apiGroup)
+		smtpRouter.Routes("/smtp", apiGroup)
 	}
 }

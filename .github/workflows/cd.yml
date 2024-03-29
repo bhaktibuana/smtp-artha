@@ -18,20 +18,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@master
 
-      - name: Create production.env
-        run: |
-          rm -f production.env
-          echo "DOCKER_ENVIRONMENT=true" > production.env
-          echo "GIN_MODE=release" >> production.env
-          echo "PORT=${{ secrets.APP_PORT }}" >> production.env
-          echo "JWT_SECRET_KEY=${{ secrets.APP_JWT_SECRET_KEY }}" >> production.env
-          echo "BASE_URL=${{ secrets.APP_BASE_ULR }}" >> production.env
-          echo "ARTHA_URL=${{ secrets.ARTHA_URL }}" >> production.env
-          echo "SMTP_PORT=${{ secrets.SMTP_PORT }}" >> production.env
-          echo "SMTP_HOST=${{ secrets.SMTP_HOST }}" >> production.env
-          echo "SMTP_USERNAME=${{ secrets.SMTP_USERNAME }}" >> production.env
-          echo "SMTP_PASSWORD=${{ secrets.SMTP_PASSWORD }}" >> production.env
-
       - name: Deploy Using SSH
         uses: appleboy/ssh-action@master
         with:
@@ -43,5 +29,16 @@ jobs:
           port: 22
           script: |
             cd ~/app/artha/smtp-artha
+            rm -f production.env
+            echo "DOCKER_ENVIRONMENT=true" > production.env
+            echo "GIN_MODE=release" >> production.env
+            echo "PORT=${{ secrets.APP_PORT }}" >> production.env
+            echo "JWT_SECRET_KEY=${{ secrets.APP_JWT_SECRET_KEY }}" >> production.env
+            echo "BASE_URL=${{ secrets.APP_BASE_ULR }}" >> production.env
+            echo "ARTHA_URL=${{ secrets.ARTHA_URL }}" >> production.env
+            echo "SMTP_PORT=${{ secrets.SMTP_PORT }}" >> production.env
+            echo "SMTP_HOST=${{ secrets.SMTP_HOST }}" >> production.env
+            echo "SMTP_USERNAME=${{ secrets.SMTP_USERNAME }}" >> production.env
+            echo "SMTP_PASSWORD=${{ secrets.SMTP_PASSWORD }}" >> production.env
             git pull origin main
             docker compose up -d --build --force-recreate

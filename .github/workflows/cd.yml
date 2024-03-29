@@ -42,6 +42,6 @@ jobs:
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
           port: 22
           script: |
-            cd: ~/app/artha/smtp-artha
+            cd ~/app/artha/smtp-artha
             git pull origin main
             docker-compose up -d --build --force-recreate

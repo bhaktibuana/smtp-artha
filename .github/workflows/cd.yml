@@ -21,7 +21,8 @@ jobs:
       - name: Create production.env
         run: |
           rm -f production.env
-          echo "DOCKER_ENVIRONMENT=true" > production.env
+          touch production.env
+          echo "DOCKER_ENVIRONMENT=true" >> production.env
           echo "GIN_MODE=release" >> production.env
           echo "PORT=${{ secrets.APP_PORT }}" >> production.env
           echo "JWT_SECRET_KEY=${{ secrets.APP_JWT_SECRET_KEY }}" >> production.env

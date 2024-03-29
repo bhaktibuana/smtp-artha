@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"os"
 	app "smtp-artha/src"
 	"smtp-artha/src/configs"
 
@@ -10,8 +11,12 @@ import (
 )
 
 func init() {
-	if err := godotenv.Load(); err != nil {
-		log.Fatal("Error loading .env file")
+	if os.Getenv("DOCKER_ENVIRONMENT") == "true" {
+		log.Println("Running inside a Docker container")
+	} else {
+		if err := godotenv.Load(); err != nil {
+			log.Fatal("Error loading .env file")
+		}
 	}
 }
 

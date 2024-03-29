@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  smtp-artha:
+    build:
+      context: .
+      dockerfile: dockerfile
+    container_name: smtp-artha
+    image: smtp-artha
+    ports:
+      - 3030:3030
+    env_file:
+      - production.env
+    networks:
+      - smtp_artha_network
+    
+
+networks:
+  smtp_artha_network: 
+    name: smtp_artha_network

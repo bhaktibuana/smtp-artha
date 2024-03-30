@@ -20,6 +20,8 @@ jobs:
 
       - name: Create production.env
         run: |
+          ls -la
+          pwd
           rm -f production.env
           touch production.env
           echo "DOCKER_ENVIRONMENT=true" >> production.env

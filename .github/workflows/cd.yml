@@ -26,7 +26,7 @@ jobs:
           echo "GIN_MODE=release" >> production.env
           echo "PORT=${{ secrets.APP_PORT }}" >> production.env
           echo "JWT_SECRET_KEY=${{ secrets.APP_JWT_SECRET_KEY }}" >> production.env
-          echo "BASE_URL=${{ secrets.APP_BASE_ULR }}" >> production.env
+          echo "BASE_URL=${{ secrets.APP_BASE_URL }}" >> production.env
           echo "ARTHA_URL=${{ secrets.ARTHA_URL }}" >> production.env
           echo "SMTP_PORT=${{ secrets.SMTP_PORT }}" >> production.env
           echo "SMTP_HOST=${{ secrets.SMTP_HOST }}" >> production.env

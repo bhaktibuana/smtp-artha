@@ -26,12 +26,17 @@ jobs:
           echo "GIN_MODE=release" >> production.env
           echo "PORT=${{ secrets.APP_PORT }}" >> production.env
           echo "JWT_SECRET_KEY=${{ secrets.APP_JWT_SECRET_KEY }}" >> production.env
-          echo "BASE_URL=${{ secrets.APP_BASE_URL }}" >> production.env
           echo "ARTHA_URL=${{ secrets.ARTHA_URL }}" >> production.env
           echo "SMTP_PORT=${{ secrets.SMTP_PORT }}" >> production.env
           echo "SMTP_HOST=${{ secrets.SMTP_HOST }}" >> production.env
           echo "SMTP_USERNAME=${{ secrets.SMTP_USERNAME }}" >> production.env
           echo "SMTP_PASSWORD=${{ secrets.SMTP_PASSWORD }}" >> production.env
+          if [ "${{ github.ref }}" = "refs/heads/main" ]; then
+            echo "BASE_URL=${{ secrets.APP_BASE_URL }}" >> production.env
+          elif [ "${{ github.ref }}" = "refs/heads/staging" ]; then
+            echo "BASE_URL=${{ secrets.APP_STG_BASE_URL }}" >> production.env
+          fi
+
 
       - name: Deploy Using SSH
         uses: appleboy/ssh-action@master

@@ -41,4 +41,5 @@ jobs:
             echo "SMTP_HOST=${{ secrets.SMTP_HOST }}" >> production.env
             echo "SMTP_USERNAME=${{ secrets.SMTP_USERNAME }}" >> production.env
             echo "SMTP_PASSWORD=${{ secrets.SMTP_PASSWORD }}" >> production.env
-            docker-compose up -d --build --force-recreate
+            docker-compose build --no-cache
+            docker-compose up -d --force-recreate
